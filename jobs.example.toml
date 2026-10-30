@@ -1,0 +1,31 @@
+# Copy this file, edit the [[job]] entries, and run
+#     python pipeline/run.py my-jobs.toml --dry-run
+# Relative paths resolve against the repository root.
+
+image = "erroragent:latest"
+videos_root = "videos"          # videos/<dataset>/<scene>.mp4
+runs_root = "runs"
+# cpus = 4                      # default: all of the host's CPUs
+memory = "16g"
+
+# Optional: credential files other than the CLIs' defaults
+# (~/.claude/.credentials.json and ~/.codex/auth.json).
+# [credentials]
+# claude = "~/.claude/.credentials.json"
+# codex = "~/.codex/auth.json"
+
+# Each video is given to the agent as is. To run on part of a walkthrough,
+# cut that part into its own file beforehand and point `video` at it.
+[[job]]
+video = "scannet/scene0011_00.mp4"
+agent = "claude"
+model = "claude-opus-5-5"
+effort = "high"                 # low, medium, high, xhigh, max
+trials = 1
+
+# [[job]]
+# video = "scannet/scene0011_00.mp4"
+# agent = "codex"
+# model = "<CODEX_MODEL>"
+# effort = "high"
+# trials = 1
